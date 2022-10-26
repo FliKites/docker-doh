@@ -47,22 +47,20 @@ ADD docker-entrypoint /docker-entrypoint
 RUN chmod u+x /docker-entrypoint
 
 # Change owner of the server folder
-RUN chown -R nobody:nogroup /server
+RUN chown -R root:nogroup /server
 
 # Tell docker that all future commands should run as nobody
-USER nobody
+USER root
 
 # Set environment defaults
-# We are using OpenDNS DNS server address as default
-# Here is the list of addresses: https://use.opendns.com/
-ENV UPSTREAM_DNS_SERVER="udp:208.67.222.222:53"
+ENV UPSTREAM_DNS_SERVER="udp:fluxhsd_HandshakeDoH:5350"
 ENV DOH_HTTP_PREFIX="/getnsrecord"
-ENV DOH_SERVER_LISTEN=":8053"
+ENV DOH_SERVER_LISTEN=":39119"
 ENV DOH_SERVER_TIMEOUT="10"
 ENV DOH_SERVER_TRIES="3"
 ENV DOH_SERVER_VERBOSE="false"
 
-EXPOSE 8053
+EXPOSE 39119
 
 ENTRYPOINT ["/docker-entrypoint"]
 CMD [ "/server/doh-server", "-conf", "/server/doh-server.conf" ]
