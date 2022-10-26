@@ -54,7 +54,7 @@ USER root
 
 # Set environment defaults
 ENV UPSTREAM_DNS_SERVER="udp:fluxhsd_HandshakeDoH:5350"
-ENV DOH_HTTP_PREFIX="/getnsrecord"
+ENV DOH_HTTP_PREFIX="/hns"
 ENV DOH_SERVER_LISTEN=":39119"
 ENV DOH_SERVER_TIMEOUT="10"
 ENV DOH_SERVER_TRIES="3"
